@@ -2,5 +2,6 @@
 
 export(cutoff_outliers)
 export(my_transform)
+export(sublist)
 importFrom(car,bcPower)
 importFrom(car,powerTransform)
