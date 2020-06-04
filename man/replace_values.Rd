@@ -2,36 +2,33 @@
 % Please edit documentation in R/replace_values.R
 \name{replace_values}
 \alias{replace_values}
-\title{Value replacement in a dataframe}
+\title{Multiple value replacement in a vector}
 \usage{
 replace_values(
-  dat,
+  vec,
   from = c("aː", "a", "iː", "ɪ", "uː", "ʊ"),
-  to = c("a", "a", "i", "i", "u", "u"),
-  clm = "Segment"
+  to = c("a", "a", "i", "i", "u", "u")
 )
 }
 \arguments{
-\item{dat}{A dataframe to which you want to execute replacements.}
+\item{vec}{A vector to which you want to execute replacements.}
 
 \item{from}{A vector of strings which you want to replace for something else.}
 
 \item{to}{A vector of strings with the same length as 'from'. Target strings specified by 'from' are replaced by the corresponding values specified by this variable ('to').}
-
-\item{clm}{A string, which gives the name of the column whose values you want to replace.}
 }
 \value{
-A new dataframe, whose column with the name specified by 'clm' now contains new replaced values.
+A new vector with new replacement values.
 }
 \description{
-Replaces multiple values in a dataframe according to pairs provided.
+Replaces multiple values in a vector according to pairs provided.
 }
 \examples{
-ddd = data.frame('letter'=LETTERS[1:5], 'value'=seq(10,50,10))
+vvv = LETTERS[1:5]
 fff = c('B', 'D')
 ttt = c('XX', 'YY')
-dat = replace_values(dat=ddd, from=fff, to=ttt, clm='letter')
-print(dat)
+vvv = replace_values(vec=vvv, from=fff, to=ttt)
+print(vvv)
 }
 \author{
 Motoki Saito, \email{motoki.saito@uni-tuebingen.de}
