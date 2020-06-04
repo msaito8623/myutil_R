@@ -3,6 +3,7 @@
 export(cutoff_outliers)
 export(gen_filename)
 export(my_transform)
+export(replace_values)
 export(sublist)
 importFrom(car,bcPower)
 importFrom(car,powerTransform)
