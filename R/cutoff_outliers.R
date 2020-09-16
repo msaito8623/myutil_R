@@ -25,7 +25,9 @@ cutoff_outliers <-
 function ( vec, type='sd', p=0.1, value=FALSE )
 {
 	if (type=='sd') {
-		res = abs(vec) <= sd(vec)*2
+		pos1 = vec <= (mean(vec) + sd(vec)*2)
+		pos2 = vec >= (mean(vec) - sd(vec)*2)
+		res = pos1 & pos2
 	} else if (type=='quantile'){
 		rng = quantile(vec, p=c(p, 1-p))
 		res = vec>rng[1] & vec<rng[2]
