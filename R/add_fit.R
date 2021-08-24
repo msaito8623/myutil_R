@@ -25,20 +25,24 @@
 #' ndat = add_fit(ndat, mdl, pterm=2, sterm=5)
 #' @export
 #'
-add_fit = function (dat, mdl, pterm=NULL, sterm=NULL) {
+add_fit = function (dat, mdl, pterm=NULL, sterm=NULL, se.mult=2) {
 	if ( any(!sapply(list(pterm,sterm),is.null)) ) {
-		pterm = attr(mdl$pterms, 'term.labels')[pterm]
-		sterm = sapply(mdl$smooth[sterm], function(x){x$label})
-		print(sprintf('Selected pterm: %s', pterm))
-		print(sprintf('Selected sterm: %s', sterm))
+		if (!is.null(pterm)) {
+			pterm = attr(mdl$pterms, 'term.labels')[pterm]
+			print(sprintf('Selected pterm: %s', pterm))
+		}
+		if (!is.null(sterm)) {
+			sterm = sapply(mdl$smooth[sterm], function(x){x$label})
+			print(sprintf('Selected sterm: %s', sterm))
+		}
 		prd = predict.gam(mdl, newdata=dat, type='terms', terms=c(pterm,sterm), se=1)
 		dat$fit = unname(apply(prd$fit,1,sum))
-		dat$se  = unname(apply(prd$se.fit,1,sum))
+		dat$se  = unname(sqrt(apply(prd$se.fit^2,1,sum)))
 	} else {
 		dat$fit = predict.gam(mdl, newdata=dat, se.fit=1)$fit
 		dat$se  = predict.gam(mdl, newdata=dat, se.fit=1)$se.fit
 	}
-	dat$upr = dat$fit + 1.98*dat$se
-	dat$lwr = dat$fit - 1.98*dat$se
+	dat$upr = dat$fit + se.mult*dat$se
+	dat$lwr = dat$fit - se.mult*dat$se
 	return(dat)
 }

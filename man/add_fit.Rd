@@ -4,7 +4,7 @@
 \alias{add_fit}
 \title{Add predicted values to a dataframe}
 \usage{
-add_fit(dat, mdl, pterm = NULL, sterm = NULL)
+add_fit(dat, mdl, pterm = NULL, sterm = NULL, se.mult = 2)
 }
 \arguments{
 \item{dat}{A dataframe. It is usually a "new" dataframe for prediction, which usually has all the combination of predictors, created by expand.grid.}
