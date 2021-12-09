@@ -1,9 +1,9 @@
 Package: myutil
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Utilities for me
+Version: 0.1.1
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Motoki",
+           family = "Saito",
            role = c("aut", "cre"),
            email = "first.last@example.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
