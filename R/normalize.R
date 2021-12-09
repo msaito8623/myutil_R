@@ -27,6 +27,6 @@
 normalize = function ( x, norm.range=c(0,1)) {
 	a = norm.range[1]
 	b = norm.range[2]
-	norm.values = a + ( ( (x-min(x)) * (b-a) ) / ( max(x) - min(x) ) )
+	norm.values = a + ( ( (x-min(x,na.rm=TRUE)) * (b-a) ) / ( max(x,na.rm=TRUE) - min(x,na.rm=TRUE) ) )
 	return(norm.values)
 }
